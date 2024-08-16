@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    margin-top: 100px;
+}
+
+.container h1{
+    text-align: center;
+    font-weight: 700;
+}
+.container .add{
+    float: right;
+    margin-bottom: 10px;
+}
+
+.container table{
+    margin-top: 20px;
+    text-align: center;
+}
+
+table .number{
+    width: 5%;
+}
+
+table .task{
+    width: 70%;
+}
+
+table .action{
+    width: 15%;
+}

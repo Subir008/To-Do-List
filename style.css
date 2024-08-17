@@ -33,3 +33,7 @@ table .task{
 table .action{
     width: 15%;
 }
+
+.modal-body .note-submit{
+    float: right;
+}

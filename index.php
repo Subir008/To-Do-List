@@ -20,7 +20,8 @@
     ?>
   <div class="container">
     <h1>TO DO LIST</h1>
-    <button type="button" class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" id="myModal" class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <i class="fa-solid fa-circle-plus" style="color: #FFD43B;"></i>
       Add Notes
     </button>
 
@@ -32,15 +33,15 @@
             <h5 class="modal-title text-center" id="exampleModalLabel">
               NOTES
             </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" id="modalClosed" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <form>
               <div class="mb-3">
                 <input type="text" class="form-control mb-2" name="title" id="title"
-                  placeholder="Add Your Title Here" />
+                  placeholder="Add Your Title Here" / required>
                 <textarea class="form-control" name="note" id="note" rows="10"
-                  placeholder="Add Your Note Here"></textarea>
+                  placeholder="Add Your Note Here" required></textarea>
               </div>
               <button type="submit" class="btn btn-primary note-submit" id="form-submit">
                 Submit
@@ -69,14 +70,31 @@
           <td>Mark</td>
           <td>
             <button type="button" class="btn btn-outline-danger">
-              Danger
+              <i class="fa-solid fa-trash"></i>
+              Delete
             </button>
           </td>
         </tr>
       </tbody>
     </table>
+
+
   </div>
 
+  <div class="position-fixed bottom-0 end-0 p-3 mr-5" style="z-index: 9999; opacity: 99;">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <!-- <div class="toast-header">
+        <img src="..." class="rounded me-2" alt="...">
+        <strong class="me-auto">Bootstrap</strong>
+        <small class="text-muted">just now</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div> -->
+      <div class="toast-body p-4" id="toast-body" >
+       
+      </div>
+    </div>
+  </div>
+  
 
   <!-- Optional JavaScript; choose one of the two! -->
 
@@ -86,6 +104,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e1275c01b3.js" crossorigin="anonymous"></script>
   <script src="index.js"></script>
 </body>
 

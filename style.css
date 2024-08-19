@@ -5,7 +5,7 @@
 }
 
 .container{
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .container h1{
@@ -21,17 +21,24 @@
     margin-top: 20px;
     text-align: center;
 }
+table thead tr th , table tbody tr td{
+    text-align: center !important;
+}
 
 table .number{
-    width: 5%;
+    width: 10%;
+}
+
+table .title{
+    width: 20%;
 }
 
 table .task{
-    width: 70%;
+    width: 60%;
 }
 
 table .action{
-    width: 15%;
+    width: 10%;
 }
 
 .modal-body .note-submit{

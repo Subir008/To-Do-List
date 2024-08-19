@@ -9,7 +9,7 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-
+  <link rel="stylesheet" href="//cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css">
   <link rel="stylesheet" href="style.css" />
   <title>To Do List</title>
 </head>
@@ -25,7 +25,7 @@
       Add Notes
     </button>
 
-    <!-- Modal -->
+    <!-- Note Add Modal Start -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -55,33 +55,45 @@
         </div>
       </div>
     </div>
+    <!-- Note Add Modal End -->
 
-    <table class="table table-hover">
+    <table class="table table-hover" id="myTable">
       <thead class="table-dark">
         <tr>
           <th scope="col" class="number">#</th>
+          <th scope="col" class="title">Title</th>
           <th scope="col" class="task">Task</th>
           <th scope="col" class="action">Action</th>
         </tr>
       </thead>
       <tbody class="bg-warning">
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>
-            <button type="button" class="btn btn-outline-danger">
-              <i class="fa-solid fa-trash"></i>
-              Delete
-            </button>
-          </td>
-        </tr>
+        <?php
+          $query = "SELECT * FROM manage_task ORDER BY task_no" ;
+          $result = mysqli_query($con, $query);
+          $no = 0;
+          while($row = mysqli_fetch_assoc($result)){
+            $no++;
+        ?>
+            <tr>
+              <td><?php echo $no ?></td> 
+              <td><?php echo $row['task_title'] ?></td> 
+              <td><?php echo $row['task_details'] ?></td> 
+              <td><button type="button" class="btn btn-outline-danger">
+                <i class="fa-solid fa-trash"></i>
+                Delete
+              </button></td>   
+            </tr>
+        <?php
+          }
+          ?>
       </tbody>
     </table>
 
 
   </div>
 
-  <div class="position-fixed bottom-0 end-0 p-3 mr-5" style="z-index: 9999; opacity: 99;">
+  <!-- Toaster Start -->
+  <div class="position-fixed bottom-0 end-0 p-3 me-2" style="z-index: 9999; opacity: 99;">
     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
       <!-- <div class="toast-header">
         <img src="..." class="rounded me-2" alt="...">
@@ -94,13 +106,14 @@
       </div>
     </div>
   </div>
-  
+  <!-- Toaster End -->
 
   <!-- Optional JavaScript; choose one of the two! -->
 
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-    crossorigin="anonymous"></script>
+  crossorigin="anonymous"></script>
+  <script src="//cdn.datatables.net/2.1.4/js/dataTables.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>

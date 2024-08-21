@@ -1,6 +1,31 @@
 $(document).ready(function () {
-  $("#myTable").DataTable();
+    $('#myTable').DataTable();
+  // $('#myTable').DataTable({
+  //   // Optional: Customize DataTables settings
+  //   "paging": true,
+  //   "lengthChange": false,
+  //   "searching": true,
+  //   "ordering": true,
+  //   "info": true,
+  //   "autoWidth": false,
+  //   "responsive": true,
+  //   "language": {
+  //       "paginate": {
+  //           "previous": "<i class='fas fa-chevron-left'></i>",
+  //           "next": "<i class='fas fa-chevron-right'></i>"
+  //       }
+  //   }
 
+//   $('#myTable').DataTable({
+//     // Optional settings
+//     "paging": true,
+//     "lengthChange": false,
+//     "searching": true,
+//     "ordering": true,
+//     "info": true,
+//     "autoWidth": false,
+//     "responsive": true
+// });
   // For Deleting Data
   $(".delete").on("click", function () {
     var taskId = $(this).data("id");
@@ -16,6 +41,12 @@ $(document).ready(function () {
       data: { id: taskId },
       success: function (response) {
         $("#deleteModal").modal("hide");
+        const toast = new bootstrap.Toast(toastLiveExample);
+        document.getElementById("liveToast").style.backgroundColor = "#1aa179";
+        document.getElementById(
+          "toast-body"
+        ).innerHTML = `<h6 style="color:white"><i class="fa-regular fa-circle-check"></i> <span>SUCCESS </span> </h6> <h6 style="color:white"> Data Deleted Successfully</h6>`;
+        toast.show();
         document.location.reload();
       },
     });
@@ -62,6 +93,12 @@ $(document).ready(function () {
       data: $('#updateForm').serialize(), // Send the form data
       success: function(response) {
         // alert('Task updated successfully!');
+        const toast = new bootstrap.Toast(toastLiveExample);
+        document.getElementById("liveToast").style.backgroundColor = "#1aa179";
+        document.getElementById(
+          "toast-body"
+        ).innerHTML = `<h6 style="color:white"><i class="fa-regular fa-circle-check"></i> <span>SUCCESS </span> </h6> <h6 style="color:white"> Data Updated Successfully </h6>`;
+        toast.show();
         document.location.reload(); // Reload the page to reflect the changes
       },
       error: function(xhr, status, error) {

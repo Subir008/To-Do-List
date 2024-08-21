@@ -18,7 +18,12 @@
   <?php
   include "db.php";
   ?>
-  <div class="container">
+
+<div class="spinner-border" role="status" style="display: none;">
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+  <div class="container ">
     <h1>TO DO LIST</h1>
     <button type="button" id="myModal" class="btn btn-primary add" data-bs-toggle="modal"
       data-bs-target="#exampleModal">
@@ -148,10 +153,8 @@
       </tbody>
     </table>
 
-  </div>
-
-  <!-- Toaster Start -->
-  <div class="position-fixed bottom-0 end-0 p-3 me-2" style="z-index: 9999; opacity: 99;">
+      <!-- Toaster Start -->
+  <div class="position-fixed bottom-0 end-1 p-3 me-2" style="z-index: 9999; opacity: 99; left:10px">
     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
       <!-- <div class="toast-header">
         <img src="..." class="rounded me-2" alt="...">
@@ -165,6 +168,10 @@
     </div>
   </div>
   <!-- Toaster End -->
+
+  </div>
+
+
 
   <!-- Optional JavaScript; choose one of the two! -->
 

@@ -1,33 +1,11 @@
 $(document).ready(function () {
-    $('#myTable').DataTable();
-  // $('#myTable').DataTable({
-  //   // Optional: Customize DataTables settings
-  //   "paging": true,
-  //   "lengthChange": false,
-  //   "searching": true,
-  //   "ordering": true,
-  //   "info": true,
-  //   "autoWidth": false,
-  //   "responsive": true,
-  //   "language": {
-  //       "paginate": {
-  //           "previous": "<i class='fas fa-chevron-left'></i>",
-  //           "next": "<i class='fas fa-chevron-right'></i>"
-  //       }
-  //   }
+  $("#myTable").DataTable();
 
-//   $('#myTable').DataTable({
-//     // Optional settings
-//     "paging": true,
-//     "lengthChange": false,
-//     "searching": true,
-//     "ordering": true,
-//     "info": true,
-//     "autoWidth": false,
-//     "responsive": true
-// });
+  const loader = document.querySelector(".loader");
+  const loaderwrapper = document.querySelector(".loader-wrapper");
+
   // For Deleting Data
-  $(".delete").on("click", function () {
+  $(document).on("click", ".delete", function () {
     var taskId = $(this).data("id");
     $("#confirmDelete").data("id", taskId); // Set the ID to the confirm delete button
   });
@@ -35,8 +13,11 @@ $(document).ready(function () {
   $("#confirmDelete").on("click", function () {
     var taskId = $(this).data("id");
     console.log("Task ID to delete: " + taskId);
+
+    $(".loader-wrapper").css("visibility", "visible");
+    $(".loader").show();
     $.ajax({
-      url: "delete_task.php", 
+      url: "delete_task.php",
       type: "POST",
       data: { id: taskId },
       success: function (response) {
@@ -47,69 +28,80 @@ $(document).ready(function () {
           "toast-body"
         ).innerHTML = `<h6 style="color:white"><i class="fa-regular fa-circle-check"></i> <span>SUCCESS </span> </h6> <h6 style="color:white"> Data Deleted Successfully</h6>`;
         toast.show();
+        $(".loader").hide();
+        $(".loader-wrapper").hide();
+        $(".loader-wrapper").css("visibility", "hidden");
         document.location.reload();
       },
     });
   });
 
-  $("#cancelDelete").on('click',function () {
-    $('#deleteModal').modal('hide'); 
+  $("#cancelDelete").on("click", function () {
+    $("#deleteModal").modal("hide");
   });
 
+  // For Updating Data
+  $(document).on("click", ".update", function () {
+    var taskId = $(this).data("id"); // Get the task id from the data-id attribute
 
-  $('.update').click(function() {
-    var taskId = $(this).data('id'); // Get the task id from the data-id attribute
+    console.log(taskId);
 
+    $(".loader-wrapper").css("visibility", "visible").show();
+    $(".loader").css("visibility", "visible").show();
     // Send an AJAX request to fetch the task data
     $.ajax({
-      url: 'fetch_task.php', // This is the PHP file that will return the task data
-      type: 'POST',
+      url: "fetch_task.php", // This is the PHP file that will return the task data
+      type: "POST",
       data: { task_no: taskId },
-      success: function(data) {
+      success: function (data) {
         var task = JSON.parse(data); // Assuming the PHP file returns JSON data
 
         // Populate the form fields in the modal with the fetched data
-        $('#updateTaskId').val(task.task_no);
-        $('#updatetitle').val(task.task_title);
-        $('#updatenote').val(task.task_details);
+        $("#updateTaskId").val(task.task_no);
+        $("#updatetitle").val(task.task_title);
+        $("#updatenote").val(task.task_details);
 
         // Open the modal
-        $('#updateModal').modal('show');
+        $("#updateModal").modal("show");
+        $(".loader").hide();
+        $(".loader-wrapper").hide();
+        $(".loader-wrapper").css("visibility", "hidden");
       },
-      error: function(xhr, status, error) {
-        console.error('Error fetching task data:', error);
-      }
+      error: function (xhr, status, error) {
+        console.error("Error fetching task data:", error);
+      },
     });
   });
 
   // Handle the update form submission
-  $('#updateForm').submit(function(e) {
-    e.preventDefault();
-
+  $("#updateForm").submit(function (e) {
+    e.preventDefault(); // Prevent default form submission
+    $(".loader-wrapper").css("visibility", "visible").show();
+    $(".loader").css("visibility", "visible").show();
     // Send an AJAX request to update the task
     $.ajax({
-      url: 'update_task.php', // This is the PHP file that will handle the update
-      type: 'POST',
-      data: $('#updateForm').serialize(), // Send the form data
-      success: function(response) {
-        // alert('Task updated successfully!');
+      url: "update_task.php", // This is the PHP file that will handle the update
+      type: "POST",
+      data: $("#updateForm").serialize(), // Send the form data
+      success: function (response) {
         const toast = new bootstrap.Toast(toastLiveExample);
         document.getElementById("liveToast").style.backgroundColor = "#1aa179";
         document.getElementById(
           "toast-body"
         ).innerHTML = `<h6 style="color:white"><i class="fa-regular fa-circle-check"></i> <span>SUCCESS </span> </h6> <h6 style="color:white"> Data Updated Successfully </h6>`;
+        $(".loader").hide();
+        $(".loader-wrapper").hide();
+        $(".loader-wrapper").css("visibility", "hidden");
         toast.show();
+
         document.location.reload(); // Reload the page to reflect the changes
       },
-      error: function(xhr, status, error) {
-        console.error('Error updating task:', error);
-      }
+      error: function (xhr, status, error) {
+        console.error("Error updating task:", error);
+      },
     });
   });
-
 });
-
-  
 
 const toastTrigger = document.getElementById("liveToastBtn");
 const toastLiveExample = document.getElementById("liveToast");
@@ -119,7 +111,6 @@ const modal = document.querySelector(".modal");
 
 const del = document.getElementsByClassName("delete");
 
-// For Insertig data 
 $("#form-submit").on("click", function (e) {
   e.preventDefault();
   let title = $("#title").val();
@@ -143,6 +134,8 @@ $("#form-submit").on("click", function (e) {
     toast.show();
     return;
   }
+  $(".loader-wrapper").css("visibility", "visible");
+  $(".loader").show();
 
   $.ajax({
     url: "form-submit.php",
@@ -156,6 +149,9 @@ $("#form-submit").on("click", function (e) {
 
       if (data == "Data Inserted") {
         const toast = new bootstrap.Toast(toastLiveExample);
+        $(".loader").hide();
+        $(".loader-wrapper").hide();
+        $(".loader-wrapper").css("visibility", "hidden");
         document.getElementById("liveToast").style.backgroundColor = "#1bc5bd";
         document.getElementById(
           "toast-body"
@@ -164,6 +160,9 @@ $("#form-submit").on("click", function (e) {
         document.location.reload();
       } else {
         const toast = new bootstrap.Toast(toastLiveExample);
+        $(".loader").hide();
+        $(".loader-wrapper").hide();
+        $(".loader-wrapper").css("visibility", "hidden");
         document.getElementById("liveToast").style.backgroundColor = "#dc3545";
         document.getElementById(
           "toast-body"
@@ -174,19 +173,3 @@ $("#form-submit").on("click", function (e) {
     },
   });
 });
-
-
-// Array.from(del).forEach((element) =>{
-//     element.addEventListener('click',function(e){
-//         console.log(e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode);
-//         tr = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
-//         id = tr.getElementsByTagName('td')[3].innerText;
-//         const taskNo = tr.querySelector('input[type="hidden"]').value;
-//         console.log(taskNo);
-
-//         id = e.target;
-//     });
-
-// });
-
-

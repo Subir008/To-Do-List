@@ -19,9 +19,9 @@
   include "db.php";
   ?>
 
-<div class="spinner-border" role="status" style="display: none;">
-  <span class="visually-hidden">Loading...</span>
-</div>
+  <div class="loader-wrapper">
+    <div class="loader "></div>
+  </div>
 
   <div class="container ">
     <h1>TO DO LIST</h1>
@@ -83,25 +83,28 @@
 
     <!--Update Modal Start-->
     <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-center" id="updateModalLabel">UPDATE NOTES</h5>
-        <button type="button" class="btn-close" id="modalClosed" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="updateForm">
-          <input type="hidden" id="updateTaskId" name="task_no" />
-          <div class="mb-3">
-            <input type="text" class="form-control mb-2" name="updatetitle" id="updatetitle" placeholder="Add Your Title Here" required>
-            <textarea class="form-control" name="updatenote" id="updatenote" rows="10" placeholder="Add Your Note Here" required></textarea>
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-center" id="updateModalLabel">UPDATE NOTES</h5>
+            <button type="button" class="btn-close" id="modalClosed" data-bs-dismiss="modal"
+              aria-label="Close"></button>
           </div>
-          <button type="submit" class="btn btn-primary note-submit" id="update-task">Update</button>
-        </form>
+          <div class="modal-body">
+            <form id="updateForm">
+              <input type="hidden" id="updateTaskId" name="task_no" />
+              <div class="mb-3">
+                <input type="text" class="form-control mb-2" name="updatetitle" id="updatetitle"
+                  placeholder="Add Your Title Here" required>
+                <textarea class="form-control" name="updatenote" id="updatenote" rows="10"
+                  placeholder="Add Your Note Here" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary note-submit" id="update-task">Update</button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
     <!--Update Modal End-->
 
@@ -137,11 +140,13 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
                   <li class="nav-item list"><a class="update nav-link list-item btn" data-bs-toggle="modal"
-                  data-bs-target="#updateModal" data-id="<?php echo $row['task_no']; ?>"><i
-                        class="text-success nav-icon fas fa-pen"></i>&nbsp;&nbsp;<span class="nav-text">Edit Details</span></a></li>
+                      data-bs-target="#updateModal" data-id="<?php echo $row['task_no']; ?>"><i
+                        class="text-success nav-icon fas fa-pen"></i>&nbsp;&nbsp;<span class="nav-text">Edit
+                        Details</span></a></li>
                   <li class="nav-item list"><a class="delete btn nav-link list-item" data-bs-toggle="modal"
                       data-bs-target="#deleteModal" data-id="<?php echo $row['task_no']; ?>"><i
-                        class="text-danger nav-icon fas fa-trash"></i>&nbsp;&nbsp;<span class="nav-text">Delete Details</span></a>
+                        class="text-danger nav-icon fas fa-trash"></i>&nbsp;&nbsp;<span class="nav-text">Delete
+                        Details</span></a>
                   </li>
                 </ul>
               </div>
@@ -153,21 +158,14 @@
       </tbody>
     </table>
 
-      <!-- Toaster Start -->
-  <div class="position-fixed bottom-0 end-1 p-3 me-2" style="z-index: 9999; opacity: 99; left:10px">
-    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-      <!-- <div class="toast-header">
-        <img src="..." class="rounded me-2" alt="...">
-        <strong class="me-auto">Bootstrap</strong>
-        <small class="text-muted">just now</small>
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div> -->
-      <div class="toast-body p-4" id="toast-body">
-
+    <!-- Toaster Start -->
+    <div class="position-fixed bottom-0 end-1 me-2" style="z-index: 9999; opacity: 99; left:10px">
+      <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body p-4" id="toast-body">
+        </div>
       </div>
     </div>
-  </div>
-  <!-- Toaster End -->
+    <!-- Toaster End -->
 
   </div>
 

@@ -9,6 +9,10 @@
     margin-bottom: 50px;
 }
 
+.icon{
+    padding-bottom: 4px;
+}
+
 .container h1{
     text-align: center;
     font-weight: 700;

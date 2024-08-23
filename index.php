@@ -9,12 +9,14 @@
   <!-- Required meta tags -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/x-icon" href="icon.png">
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
   <link rel="stylesheet" href="//cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css">
   <link rel="stylesheet" href="style.css" />
+
   <title>To Do List</title>
 </head>
 
@@ -25,7 +27,7 @@
   </div>
 
   <div class="container ">
-    <h1>TO DO LIST</h1>
+    <h1>TO DO LIST <img src="icon.png" alt="" class="icon" height="38px"></h1>
     <button type="button" id="myModal" class="btn btn-primary add" data-bs-toggle="modal"
       data-bs-target="#exampleModal">
       <i class="fa-solid fa-circle-plus" style="color: #FFD43B;"></i>

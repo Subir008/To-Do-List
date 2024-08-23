@@ -56,11 +56,8 @@ The To-Do List website allows users to manage their tasks with functionalities t
 **PHP**
 
 * db.php: Contains database connection settings.
-
 * form-submit.php: Handles Data Creation operations.
-
 * fetch_task.php: Handles Data Fetching operations.
-
 * delete_task.php: Handles Data Deletion operations.
 
 **3. Database**

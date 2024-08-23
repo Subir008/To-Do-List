@@ -181,7 +181,7 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/e1275c01b3.js" crossorigin="anonymous"></script>
-  <script src="index.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>

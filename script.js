@@ -12,7 +12,7 @@ $(document).ready(function () {
 
   $("#confirmDelete").on("click", function () {
     var taskId = $(this).data("id");
-    console.log("Task ID to delete: " + taskId);
+    // console.log("Task ID to delete: " + taskId);
 
     $(".loader-wrapper").css("visibility", "visible");
     $(".loader").show();
@@ -54,8 +54,16 @@ $(document).ready(function () {
       type: "POST",
       data: { task_no: taskId },
       success: function (data) {
-        var task = JSON.parse(data); // Assuming the PHP file returns JSON data
+        var jsonObjects = data.split("}{").map((obj, index, arr) => {
+          if (index > 0) obj = "{" + obj;
+          if (index < arr.length - 1) obj = obj + "}";
+          return JSON.parse(obj);
+        });
 
+        // Assuming you only need the first object, for example
+        var task = jsonObjects[0];
+        // console.log(task);
+        
         // Populate the form fields in the modal with the fetched data
         $("#updateTaskId").val(task.task_no);
         $("#updatetitle").val(task.task_title);
@@ -145,7 +153,7 @@ $("#form-submit").on("click", function (e) {
       note: note,
     },
     success: function (data) {
-      console.log(data);
+      // console.log(data);
 
       if (data == "Data Inserted") {
         const toast = new bootstrap.Toast(toastLiveExample);

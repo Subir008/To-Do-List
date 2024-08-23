@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php
+  include "db.php";
+?>
+  
+  <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -15,9 +19,6 @@
 </head>
 
 <body>
-  <?php
-  include "db.php";
-  ?>
 
   <div class="loader-wrapper">
     <div class="loader "></div>
@@ -122,7 +123,7 @@
       </thead>
       <tbody class="bg-warning">
         <?php
-        $query = "SELECT * FROM manage_task ORDER BY task_no";
+        $query = "SELECT * FROM manage_task ORDER BY task_no DESC";
         $result = mysqli_query($con, $query);
         $no = 0;
         while ($row = mysqli_fetch_assoc($result)) {
